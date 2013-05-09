@@ -44,11 +44,16 @@ public class SolVinkel {
             else if (SHAdegr > 180) SHAdegr -= 360;
             double SHA = Math.PI*SHAdegr/180.;
 
+            // arcsin(sin(LAT)*sin(DEC) + cos(LAT)*cos(DEC)*cos(LHA))
+
             double cosSZA = Math.sin(latitude)*Math.sin(D)+Math.cos(latitude)*Math.cos(D)*Math.cos(SHA);
             if (cosSZA > 1) cosSZA = 1;
             if (cosSZA < -1) cosSZA = -1;
             double SZA = Math.acos(cosSZA);
             double SZAdegr = 180.*SZA/Math.PI;
+
+
+
 
             // Calculate azimuth angle:
             double cosAZ = (Math.sin(D)-Math.sin(latitude)*Math.cos(SZA))/(Math.cos(latitude)*Math.sin(SZA));
